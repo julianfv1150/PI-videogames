@@ -6,12 +6,13 @@ const login = async (userData) => {
     const { email, password } = userData;
     try {
         const { data } = await axios.get(`${URL}/users?user=${email}&password=${password}`)
-        console.log(data.state);
+        if(data.email === email && data.password === password) return true;
+        else{
+            return false
+        } 
     } catch (error) {
         console.log(error.message);
     }
 }
-
-
 
 export default login;

@@ -1,31 +1,35 @@
-import style from './Form.module.css'
-import { login, emailValidate, passwordValidate } from '../../utils/index'
+/* eslint-disable react/prop-types */
+
+import style from './Login.module.css'
+import { emailValidate, passwordValidate } from '../../utils/index'
 import { useState } from 'react'
 
-const Form = () => {
+const Login = ({sesion, register}) => {
     
-    let errorEmail;
-    let errorPassword;
     const [ userData, setUserData ] = useState({
         email: '',
-        password: ''
+        pass: ''
     })
-
+    
+    const [ errorCred, setErrorCred ] = useState({
+        email: '',
+        pass: ''
+    })
+    
     const handleChange = (event) => {
-        if(event.target.name === 'email')setUserData({...userData, email: event.target.value})
-        if(event.target.name === 'password')setUserData({...userData, password: event.target.value})
-    }
-
-    if(emailValidate(userData.email).state === false){
-        errorEmail = emailValidate(userData.email);
-    }
-    if(emailValidate(userData.password).state === false){
-        errorPassword = passwordValidate(userData.password);
+        (event.target.name === 'email') && setUserData({...userData, email: event.target.value});
+        (event.target.name === 'password') && setUserData({...userData, pass: event.target.value});
+        
+        setErrorCred({
+            ...errorCred, 
+            email: emailValidate(userData), 
+            pass: passwordValidate(userData)
+        });   
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        login(userData);
+        sesion(userData);
     }
 
     return (
@@ -58,15 +62,13 @@ const Form = () => {
                     {/* GESTIÓN DE ERRORES DEL LOGIN */}
                 <div>
                     <label 
-                        className={errorEmail.state === false ? style.errors : style.invisible} 
-                        htmlFor="lblerrorEmail">
-                        {errorEmail.message}
+                        className={errorCred.email !== 'OK' ? style.errors : style.invisible} 
+                        htmlFor="lblerrorEmail">{errorCred.email}
                     </label>
                     <br></br>
                     <label 
-                        className={errorPassword.state === false ? style.errors : style.invisible}
-                        htmlFor="lblerrorPass">
-                        {errorPassword.message}
+                        className={errorCred.pass !== 'OK' ? style.errors : style.invisible}
+                        htmlFor="lblerrorPass">{errorCred.pass}
                     </label>
                 </div>
                 <div>
@@ -76,10 +78,10 @@ const Form = () => {
                         value="Ingresar"
                     />
                     <input 
-                        //className={style}
                         type="submit" 
                         name="Submit" 
                         value="Registrarse"
+                        onClick={register}
                     />
                 </div>
                 <div className={style.defaultData}>
@@ -93,4 +95,4 @@ const Form = () => {
     )
 }
 
-export default Form;
+export default Login;

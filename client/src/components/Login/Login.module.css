@@ -31,6 +31,7 @@ p{
     visibility: hidden;
 }
 .errors{
+    font-size: .5em;
     visibility: visible;
     color: red;
 }

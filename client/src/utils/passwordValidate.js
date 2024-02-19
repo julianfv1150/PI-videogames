@@ -1,21 +1,8 @@
-const passwordValidate = ({ password }) => {
-    
-    if(password === "") return {
-        state: false,
-        message: "Ingrese una contraseña"
-    };
-
-    // if(password.length < 6 || password.length > 10) return {
-    //     state: false,
-    //     message: "Caracteres insuficientes"
-    // };
-    if(!/(?=.*?[0-9])/.test(password)) return {
-        state: false,
-        message: "Condiciones insuficientes"
-    };
-    return {
-        state: true
-    };
+const passwordValidate = ({ pass }) => {
+    if(pass === "") return "Ingrese una contraseña";
+    if(pass.length < 7 ) return "La contraseña ebe tener al menos 8 caracteres";
+    if(!/(?=.*?[0-9])/.test(pass)) return "Formato de contraseña inválido";
+    return 'OK';
 }
 
 export default passwordValidate;

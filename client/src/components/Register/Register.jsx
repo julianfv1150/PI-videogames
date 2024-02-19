@@ -1,7 +1,7 @@
-import style from '../Form/Form.module.css'
+import style from '../Register/Register.module.css'
 import { useState } from 'react'
 
-const Form = () => {
+const Register = () => {
     
     let loginValue;
     const [ userData, setUserData ] = useState({
@@ -68,4 +68,4 @@ const Form = () => {
     )
 }
 
-export default Form;
+export default Register;
