@@ -28,14 +28,33 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Videogames, Platforms, Genres } = sequelize.models;
+//console.log(sequelize.models);
+const { Videogames, Platforms, Genres, Users, Rankings } = sequelize.models;
 
 // Aca vendrian las relaciones
+//Videogames.belongsToMany(Rankings, { through: 'game_usr_stars', foreignKey: 'Videogames.id' });
+//Users.belongsToMany(Rankings, { through: 'game_usr_stars', foreignKey: 'Users.id' }); 
+//Rankings.belongsToMany(Users, { through: 'game_usr_stars', foreignKey: 'Rankings.id' });
+//Rankings.belongsToMany(Videogames, { through: 'game_usr_stars', foreignKey: 'Rankings.id' });
 
-Videogames.belongsToMany(Platforms, {through: 'games_platforms'});
+//RELACIÓN TRIPLE:
+
+// Añade la relación M:M entre Videogames, Users y Rankings
+Videogames.belongsToMany(Users, { through: 'game_usr_stars', foreignKey: 'videogameId' });
+Users.belongsToMany(Videogames, { through: 'game_usr_stars', foreignKey: 'userId' });
+// También necesitas la relación M:M entre Rankings y Users
+Rankings.belongsToMany(Users, { through: 'game_usr_stars', foreignKey: 'rankingId' });
+Users.belongsToMany(Rankings, { through: 'game_usr_stars', foreignKey: 'userId' });
+// Y finalmente la relación M:M entre Rankings y Videogames
+Rankings.belongsToMany(Videogames, { through: 'game_usr_stars', foreignKey: 'rankingId' });
+Videogames.belongsToMany(Rankings, { through: 'game_usr_stars', foreignKey: 'videogameId' });
+
+
+Videogames.belongsToMany(Platforms, {through: 'games_platforms'})
 Platforms.belongsToMany(Videogames, {through: 'games_platforms'});
 Videogames.belongsToMany(Genres, {through: 'games_genres'});
 Genres.belongsToMany(Videogames, {through: 'games_genres'});
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
