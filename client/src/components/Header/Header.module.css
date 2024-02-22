@@ -2,18 +2,14 @@
     font-size: 1.5em;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-    align-content: center;
-    align-self: center;
-    justify-items: center;
-    justify-content: center;
-    justify-self: center;
     height: 100%;   
+    align-items: center;
+    
 }
 img{
     width: 80%;
     height: 80%;
 }
 .title{
-    grid-column: 2 / 4;
+    margin-left: 5px; 
 }

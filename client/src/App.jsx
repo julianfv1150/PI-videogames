@@ -1,52 +1,59 @@
 import './App.css'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
-import { Header, Login, Register, Navigation } from './components/index'
+import { Header, Login, Register, Navigation, Cards, ViewOptions } from './components/index'
 import { useState, useEffect } from 'react'
-import { login } from './utils/index'
+import { login, userCreate } from './utils/index'
+
 
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [isRegister, setIsRegister] = useState(false)
+  const [isChangeForm, setIsChangeForm] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
-
-  const register = () => {
-    setIsRegister(true);
+  
+  const changeForm = () => {
+    setIsChangeForm(!isChangeForm);
   }
-
-  const sesion = (userData) => {
-      const userFound = login(userData);
-      setIsLogin(userFound);
-      isLogin && navigate('/home');                                          
-  }
-
+ 
+  const sesion = async (userData, ubi) => {
+    try {
+      if(ubi === 'login'){
+        setIsLogin(await login(userData)); 
+      }
+      if(ubi === 'register'){
+        const { isCreated } = await userCreate(userData)
+        setIsLogin(isCreated)
+      }
+    } catch (error) {
+      console.log(error.message);
+    }    
+  };
+  
   const logOut = () => {
     setIsLogin(false)
   }
-
+  
   useEffect(()=>{
+    isLogin && navigate('/home')
     !isLogin && navigate('/')
   }, [isLogin]);
-
+  
   return (
-    <div id="App">
+    <div id="App">      
       <Header/>
-        {location.pathname !== '/' ? <Navigation logOut={logOut}/> : null}
-      <Routes>
-      <Route path="/" element={
-                !isRegister 
-          ? <Login sesion={sesion}
-                    register={register}/> 
-          : <Register />
-      }/>
-
-        {/* <Route path='/home' render={()=>{
-          <>
-            <ViewOptions />
-            <Cards /> 
-          </>
-        }} /> */}
-
+      {location.pathname !== '/' ? <Navigation logOut={logOut}/> : null}
+      <Routes>   
+        <Route path="/" element={
+          !isChangeForm 
+          ? <Login  
+            sesion={sesion}                  
+            changeForm={changeForm}/> 
+          : <Register 
+            sesion={sesion}
+            changeForm={changeForm}/>
+        }/>
+        <Route path="/home" 
+          element={<><Cards /> <ViewOptions /></>}/>
       </Routes>
     </div>
   )

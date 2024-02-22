@@ -1,11 +1,15 @@
 /* eslint-disable react/prop-types */
-
 import style from './Login.module.css'
 import { emailValidate, passwordValidate } from '../../utils/index'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { online, create } from '../../../redux/actionsCreators'
+import { chargeGames } from '../../utils/index'
 
-const Login = ({sesion, register}) => {
-    
+const Login = ({sesion, changeForm}) => {
+
+    const dispatch = useDispatch();
+
     const [ userData, setUserData ] = useState({
         email: '',
         pass: ''
@@ -29,8 +33,15 @@ const Login = ({sesion, register}) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        sesion(userData);
+        dispatch(online(userData))
+        chargeGames().then(data => {
+            dispatch(create(data))
+        })
+        sesion(userData, 'login');
+
     }
+    
+    //console.log('Se esta re-renderizando?');
 
     return (
         <div className='form'>
@@ -46,7 +57,11 @@ const Login = ({sesion, register}) => {
                         value={userData.email}
                         onChange={handleChange}
                     />
-                <hr></hr>
+                    <hr></hr>
+                    <label 
+                        className={errorCred.email !== 'OK' ? style.errors : style.invisible} 
+                        htmlFor="lblerrorEmail">{errorCred.email}
+                    </label>
                 </div>
                 <div>
                     <label htmlFor="lblPassword">Contraseña: </label>
@@ -57,15 +72,7 @@ const Login = ({sesion, register}) => {
                         value={userData.password}
                         onChange={handleChange}
                     />
-                <hr></hr>
-                </div>
-                    {/* GESTIÓN DE ERRORES DEL LOGIN */}
-                <div>
-                    <label 
-                        className={errorCred.email !== 'OK' ? style.errors : style.invisible} 
-                        htmlFor="lblerrorEmail">{errorCred.email}
-                    </label>
-                    <br></br>
+                    <hr></hr>
                     <label 
                         className={errorCred.pass !== 'OK' ? style.errors : style.invisible}
                         htmlFor="lblerrorPass">{errorCred.pass}
@@ -78,10 +85,10 @@ const Login = ({sesion, register}) => {
                         value="Ingresar"
                     />
                     <input 
-                        type="submit" 
-                        name="Submit" 
+                        type="button" 
+                        name="register" 
                         value="Registrarse"
-                        onClick={register}
+                        onClick={()=>changeForm()}
                     />
                 </div>
                 <div className={style.defaultData}>

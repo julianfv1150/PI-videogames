@@ -1,0 +1,18 @@
+.container{
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+
+.buttonSearch{
+    justify-items: right;
+    justify-content: right;
+    justify-self: right;
+    align-items: right;
+    align-content: right;
+    align-self: right;
+}
+
+.input{
+    height: 75%;
+    width: 75%;
+}

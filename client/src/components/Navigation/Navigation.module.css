@@ -1,0 +1,34 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 100%;
+    justify-items: center;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    color:white
+}
+
+.link{
+    outline: none;
+    text-decoration: none;
+    text-align: center;
+}
+
+.user{
+    height: 50px;
+    width: 100px;    
+    fill: RGB(255, 255, 255);
+    filter: drop-shadow(0 4px 3px RGB(255, 255, 255)); 
+}
+
+.searchBar{
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 25px;
+    width: 70%;
+}

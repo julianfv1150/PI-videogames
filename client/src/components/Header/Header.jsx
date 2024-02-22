@@ -6,7 +6,10 @@ const Header = () => {
         <div className="header">
             <div className={style.container}>
                 <img src="./src/assets/joystickLogoRESIZE.png" width="100px" height="100px" align="center" alt="logo"/>
-                <h1 className={style.title}>GameData Hub</h1>
+                <div className={style.title}>
+                    <h1 className={style.title}>GameData</h1>
+                    <h1 className={style.title}>Hub</h1>
+                </div>
             </div>
         </div>
     )
