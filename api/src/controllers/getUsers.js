@@ -4,12 +4,14 @@ const getUser = async (req, res) => {
 
     try {
         const { email, pass } = req.query
-        const { password } = await Users.findOne({
+        const { name, password } = await Users.findOne({
             where:{
                 email: email
             }});
         (password === pass) 
-        ? res.status(200).json({state: true})
+        ? res.status(200).json({state: true,
+                                name: name
+                                })
         : res.status(200).json({state: false})
         return;
     }

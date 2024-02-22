@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const getGenre = require('../controllers/getGenre')
 const getPlatforms = require('../controllers/getPlatforms')
-const getLanding = require('../controllers/getLanding')
 const getVideogames = require('../controllers/getVideogames')
 const getVideogamesById = require('../controllers/getVideogamesById')
 const getVideogamesByName = require('../controllers/getVideogamesByName')
@@ -14,7 +13,6 @@ const postUsers = require('../controllers/postUsers')
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.get('/', getLanding);
 router.get('/videogames', getVideogames);
 router.get('/videogames/name', getVideogamesByName)
 router.get('/videogames/:id', getVideogamesById)

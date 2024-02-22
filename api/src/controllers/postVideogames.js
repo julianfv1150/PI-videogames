@@ -1,4 +1,4 @@
-const { Videogames, Genres  } = require('../db')
+const { Videogames } = require('../db')
 
 const postVideogames = async (req, res) => {
     
