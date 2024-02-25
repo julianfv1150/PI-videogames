@@ -23,9 +23,13 @@ module.exports = (sequelize) => {
       type:DataTypes.STRING,
       isUrl: true,
     },
-    releaseDate: {
+    released: {
       type: DataTypes.DATEONLY,
       allowNull: false
+    },
+    rating: {
+      type: DataTypes.FLOAT(1, 2),
+      allowNull: true,
     }
   });
 };

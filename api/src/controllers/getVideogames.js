@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Videogames } = require('../db.js')
+const { Videogames, Genres, Platforms } = require('../db.js')
 const { API_KEY } = process.env
 const axios = require('axios')
 
@@ -11,7 +11,10 @@ const getVideogames = async (req, res) => {
     let apiVgames = [];
     let bdVgames = [];
     try {
-        bdVgames = await Videogames.findAll();
+        bdVgames = await Videogames.findAll({include: [
+            { model: Genres, attributes: ['id', 'name'] },
+            { model: Platforms, attributes: ['id', 'name'] },
+        ]});
         listVgames = bdVgames
     } catch (error) {
         return res.status(500).json(error.message)
@@ -39,8 +42,8 @@ const getVideogames = async (req, res) => {
                         released: games.released,
                         img: games.background_image,
                         rating: games.rating,
-                        platforms: games.platforms.platform,
-                        genres: games.genres
+                        platforms: games.platforms.map(elem => elem.platform),
+                        genres: games.genres                        
                     })
                 })
             })

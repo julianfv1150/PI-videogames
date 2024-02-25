@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Videogames } = require('../db.js');
+const { Videogames, Genres, Platforms } = require('../db.js');
 const axios = require('axios');
 const { Op } = require('sequelize');
 const { API_KEY } = process.env;
@@ -13,7 +13,10 @@ const getVideogamesByName = async (req, res) => {
         const { name } = req.query;
         if(!name) return res.status(400).json({message:'Ingrese un nombre'})
         if(name){            
-            const  { count, rows }  = await Videogames.findAndCountAll({
+            const  { count, rows }  = await Videogames.findAndCountAll({include: [
+                { model: Genres, attributes: ['id', 'name'] },
+                { model: Platforms, attributes: ['id', 'name'] },
+            ],
                 where: {name: {[Op.iLike]: `%${name}%`}},
                 limit: 15
             });
@@ -27,7 +30,7 @@ const getVideogamesByName = async (req, res) => {
                         released: games.released,
                         img: games.background_image,
                         rating: games.rating,
-                        platforms: games.platforms.platform,
+                        platforms: games.platforms.map(elem => elem.platform),
                         genres: games.genres
                     })
                 })
@@ -42,3 +45,4 @@ const getVideogamesByName = async (req, res) => {
 }
 
 module.exports = getVideogamesByName;
+

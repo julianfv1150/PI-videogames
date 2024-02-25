@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const getGenre = require('../controllers/getGenre')
+const getGenres = require('../controllers/getGenres')
+const getPlatform = require('../controllers/getPlatform')
 const getPlatforms = require('../controllers/getPlatforms')
 const getVideogames = require('../controllers/getVideogames')
 const getVideogamesById = require('../controllers/getVideogamesById')
@@ -16,9 +18,11 @@ const postUsers = require('../controllers/postUsers')
 router.get('/videogames', getVideogames);
 router.get('/videogames/name', getVideogamesByName)
 router.get('/videogames/:id', getVideogamesById)
-router.get('/genres', getGenre)
+router.get('/genre', getGenre)
+router.get('/genres', getGenres)
 router.get('/users', getUsers)
 router.get('/platforms', getPlatforms)
+router.get('/platform', getPlatform)
 router.post('/videogames', postVideogames)
 router.post('/users', postUsers)
 
