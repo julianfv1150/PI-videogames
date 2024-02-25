@@ -1,6 +1,6 @@
 import { URL } from '../src/utils/index'
 import axios from 'axios'
-import { ONLINE, OFFLINE, CREATE, FLAG, NAMEGAMES, PAGEMORE, PAGELESS } from './actions'
+import { ONLINE, OFFLINE, CREATE, FLAG, NAMEGAMES, PAGEMORE, PAGELESS, FILTER, UPDATE, ORDER } from './actions'
 
 export const online = (userData) => {
     return async (dispatch) =>{
@@ -72,4 +72,31 @@ export const pageless = (less) => {
     }
 }
 
+export const update = (arreglo) => {
+    return (dispatch) => {
+        return dispatch({
+            type: UPDATE,
+            payload: arreglo
+        })
+    }
+}
 
+export const filter = (valueFilters) => {
+    console.log('Despachando filter:', valueFilters);
+    return (dispatch) => {
+        return dispatch({
+            type: FILTER,
+            payload: valueFilters
+        })
+    }
+}
+
+export const order = (orden) => {
+    console.log('Despachando orders:', orden)
+    return (dispatch) => {
+        return dispatch({
+            type: ORDER,
+            payload: orden
+        })
+    }
+}

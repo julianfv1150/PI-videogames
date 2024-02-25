@@ -13,5 +13,6 @@ export {
     Navigation,
     Cards,
     SearchBar,
-    ViewOptions
+    ViewOptions,
+
 }

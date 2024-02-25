@@ -6,7 +6,7 @@ import { pagemore, pageless } from '../../../redux/actionsCreators'
 const Cards = () => {
 
     const { flag, page }  = useSelector(state => state)
-    const vgames = useSelector(state => state[flag])
+    const vgames = useSelector(state =>(flag !== 'filterGames') ? state[flag] : state[flag][1])
     const dispatch = useDispatch()
 
     const prev = () => {
@@ -40,9 +40,10 @@ const Cards = () => {
                                 id={games.id} 
                                 name={games.name} 
                                 released={games.released} 
-                                img={games.img}
-                                rating={games.rating} 
-                                genres={games.genres} />
+                                img={games.img} 
+                                genres={games.genres}
+                                platforms={games.platforms}
+                                rating={games.rating} />
                         }  
                     })
                 }

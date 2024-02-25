@@ -14,6 +14,6 @@ export {
   userValidate,
   userCreate,
   searchGames,
-  chargeGames
+  chargeGames,
 }
 
