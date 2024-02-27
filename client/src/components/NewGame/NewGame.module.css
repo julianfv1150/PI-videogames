@@ -1,0 +1,36 @@
+.container{
+    display: grid;
+    grid-template-columns: 1%, 98%, 1%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius:25px;
+    color:white;
+
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    justify-items: center;
+    justify-self: center;
+    /*
+    justify-content:stretch;
+    */
+}
+
+.grouped{
+    width: 80%;
+    border-radius: 10px;
+    padding: 2%;
+}
+
+.invisible{
+    visibility: hidden;
+}
+.visible{
+    visibility: visible;
+}
+.errors{
+    font-size: .7em;
+    visibility: visible;
+    color: red;
+}
+

@@ -5,6 +5,8 @@ import Navigation from './Navigation/Navigation'
 import Cards from './Cards/Cards'
 import SearchBar from './SearchBar/SearchBar'
 import ViewOptions from './ViewOptions/ViewOptions'
+import NewGame from './NewGame/NewGame'
+import CardDetail from './CardDetail/CardDetail'
 
 export {
     Header,
@@ -14,5 +16,7 @@ export {
     Cards,
     SearchBar,
     ViewOptions,
+    NewGame,
+    CardDetail
 
 }

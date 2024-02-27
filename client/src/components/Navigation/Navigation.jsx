@@ -17,7 +17,7 @@ const Navigation = (logOut) => {
         <div className="navigation">
             <div className={style.container}>
                 <Link to='/home' className={style.link} onClick={()=>changeReducer()}><h2>Home</h2></Link>
-                <Link to='/agregar' className={style.link} ><h2>Agregar</h2></Link>
+                <Link to='/newGame' className={style.link} ><h2>Agregar</h2></Link>
                 <div>
                     <Link className={style.link} onClick={()=>{logOut()}}>
                         <img

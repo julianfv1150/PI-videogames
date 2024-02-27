@@ -1,10 +1,21 @@
 import login from './login.js'
-import emailValidate from './emailValidate.js'
-import passwordValidate from './passwordValidate.js'
-import userValidate from './userValidate.js'
 import userCreate from './userCreate.js'
 import searchGames from './searchGame.js'
 import chargeGames from './chargeGames.js'
+import createGame from './createGame.js'
+import passwordValidate from './validates/passwordValidate.js'
+import userValidate from './validates/userValidate.js'
+import emailValidate from './validates/emailValidate.js'
+import nameGameValidate from './validates/nameGameValidate.js'
+import urlGameValidate from './validates/urlGameValidate.js'
+import ratingGameValidate from './validates/ratingGameValidate.js'
+import descriptionGameValidate from './validates/descriptionGameValidate.js'
+import genreGameValidate from './validates/genreGameValidate.js'
+import platformGameValidate from './validates/platformGameValidate.js'
+import releasedGameValidate from './validates/releasedGameValidate.js'
+import newGameValidate from './validates/newGameValidate.js'
+import loginValidate from './validates/loginValidate.js'
+import registerValidate from './validates/registerValidate.js'
 
 export const URL = 'http://localhost:3001';
 export {
@@ -15,5 +26,15 @@ export {
   userCreate,
   searchGames,
   chargeGames,
+  createGame,
+  nameGameValidate,
+  urlGameValidate,
+  ratingGameValidate,
+  descriptionGameValidate,
+  genreGameValidate,
+  platformGameValidate,
+  releasedGameValidate,
+  newGameValidate,
+  loginValidate,
+  registerValidate
 }
-

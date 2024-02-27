@@ -41,7 +41,21 @@ option {
     border-radius: 25px;
 }
 
-input[type=text], [type=password], [type=search], [type=radio] {
+textarea{
+    font-size: 0.6em;
+    outline: none;
+    border: none;
+    color: white;
+    background-color: rgb(50, 50, 50);
+    border-radius: 25px;
+    max-width: 100%;
+    width: 90%;
+    height: 100px;
+    padding: 5%;
+    resize: vertical;
+}
+
+input[type=text], [type=password], [type=search], [type=radio], [type=date] {
     font-size: 1em;
     outline: none;
     border: none;
@@ -50,6 +64,11 @@ input[type=text], [type=password], [type=search], [type=radio] {
     background-color: transparent;
     padding: 5px;
 }
+input[type=date]{
+    background-color: rgb(50, 50, 50);
+    border-radius: 25px;
+}
+
 input[type=submit], [type=button]{
     border-radius: 25px;
     text-align: center;
@@ -80,6 +99,11 @@ input[type=submit]:hover{
     -webkit-box-stroke-width:0.5px;
 }
 
+p{
+    font-size: .65em;
+    text-align: center;
+}
+
 label {
     font-size: 1.2em;
 }
@@ -87,6 +111,11 @@ label {
 .form{
     grid-column: 3 / 5;
     grid-row: 2 / 5;
+}
+
+.createGame{
+    grid-column: 2 / 6;
+    margin-top: 5%;
 }
 
 .header{
@@ -109,3 +138,4 @@ label {
     grid-row: 2 / 4;
     position: relative;
 }
+

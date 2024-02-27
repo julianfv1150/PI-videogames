@@ -72,6 +72,7 @@ const reducer = (state = {
         case ORDER:
                 return {
                         ...state, filterGames: [state.filterGames[0], state.filterGames[1].sort((a, b) => {
+                                
                                 if(isNaN(a[action.payload.orden])){
                                         if(action.payload.mayusMinus === 'asc')
                                                 return a[action.payload.orden].localeCompare(b[action.payload.orden], 'es', { numeric: true })

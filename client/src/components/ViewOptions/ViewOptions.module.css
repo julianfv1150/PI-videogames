@@ -52,4 +52,5 @@
     grid-template-columns: repeat(4, 1fr);
     padding: 3%;
     margin: 3%;
+    border-radius: 10px;
 }

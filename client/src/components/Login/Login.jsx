@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import style from './Login.module.css'
-import { emailValidate, passwordValidate } from '../../utils/index'
+import { emailValidate, passwordValidate, loginValidate } from '../../utils/index'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { online, create } from '../../../redux/actionsCreators'
-import { chargeGames } from '../../utils/index'
+import { online } from '../../../redux/actionsCreators'
+
 
 const Login = ({sesion, changeForm}) => {
 
@@ -22,26 +22,28 @@ const Login = ({sesion, changeForm}) => {
     
     const handleChange = (event) => {
         (event.target.name === 'email') && setUserData({...userData, email: event.target.value});
-        (event.target.name === 'password') && setUserData({...userData, pass: event.target.value});
+        (event.target.name === 'password') && setUserData({...userData, pass: event.target.value});    
         
-        setErrorCred({
-            ...errorCred, 
-            email: emailValidate(userData), 
-            pass: passwordValidate(userData)
-        });   
+        (event.target.name === 'email') && setErrorCred({...errorCred, email: emailValidate({...userData, email: event.target.value})});   
+        (event.target.name === 'password') && setErrorCred({...errorCred, pass: passwordValidate({...userData, pass: event.target.value})})
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        dispatch(online(userData))
-        chargeGames().then(data => {
-            dispatch(create(data))
-        })
-        sesion(userData, 'login');
-
+        if(loginValidate(userData)){
+            const valueSesion = await sesion(userData, 'login')
+            if( valueSesion.state === false){
+                console.log(valueSesion.message)
+            }
+            else{
+                dispatch(online(userData))
+                sesion(userData, 'login')
+            }
+        }
+        else{
+            console.log('Los datos ingresados no cumplen con las condiciones');
+        }
     }
-    
-    //console.log('Se esta re-renderizando?');
 
     return (
         <div className='form'>
@@ -103,3 +105,13 @@ const Login = ({sesion, changeForm}) => {
 }
 
 export default Login;
+
+/*
+
+setErrorCred({
+            ...errorCred, 
+            email: emailValidate(userData), 
+            pass: passwordValidate(userData)
+        });
+
+*/

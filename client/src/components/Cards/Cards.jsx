@@ -1,13 +1,22 @@
 import style from './Cards.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import Card from '../Card/Card'
-import { pagemore, pageless } from '../../../redux/actionsCreators'
+import { pagemore, pageless, create } from '../../../redux/actionsCreators'
+import { chargeGames } from '../../utils'
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const Cards = () => {
 
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        chargeGames().then(data => {
+            dispatch(create(data))
+        })
+    },[])
+
     const { flag, page }  = useSelector(state => state)
     const vgames = useSelector(state =>(flag !== 'filterGames') ? state[flag] : state[flag][1])
-    const dispatch = useDispatch()
 
     const prev = () => {
         if(page >= 2){
@@ -35,15 +44,14 @@ const Cards = () => {
                 {
                     vgames.map((games, index) =>{
                         if(index >= bottom && index <= top){
-                            return <Card 
-                                key={games.id} 
+                            return <Link to={`/videogamesDetail/${games.id}`} key={games.id}  ><Card                                
                                 id={games.id} 
                                 name={games.name} 
                                 released={games.released} 
                                 img={games.img} 
                                 genres={games.genres}
                                 platforms={games.platforms}
-                                rating={games.rating} />
+                                rating={games.rating} /></Link>
                         }  
                     })
                 }

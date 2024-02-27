@@ -102,7 +102,7 @@ const ViewOptions = () => {
                     </div>
                     <div>
                         <h3>Orden:</h3>
-                        <select id='orden' name='orden' defaultValue='' onChange={handleChange}>
+                        <select id='orden' name='orden' defaultValue='name' onChange={handleChange}>
                             <option value='' >Seleccione...</option>
                             <option value='id' >Id</option>
                             <option value='name' >Nombre</option>

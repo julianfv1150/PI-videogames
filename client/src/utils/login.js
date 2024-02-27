@@ -6,9 +6,9 @@ const login = async (userData) => {
     const { email, pass } = userData;
     try {
         const { data }  = await axios.get(`${URL}/users?email=${email}&pass=${pass}`);
-        return data.state;
+        return data;
     } catch (error) {
-        console.log(error.message);
+        return error.response.data;
     }
 }
 

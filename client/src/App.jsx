@@ -1,6 +1,6 @@
 import './App.css'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
-import { Header, Login, Register, Navigation, Cards, ViewOptions } from './components/index'
+import { Header, Login, Register, Navigation, Cards, ViewOptions, NewGame, CardDetail } from './components/index'
 import { useState, useEffect } from 'react'
 import { login, userCreate } from './utils/index'
 
@@ -18,7 +18,9 @@ function App() {
   const sesion = async (userData, ubi) => {
     try {
       if(ubi === 'login'){
-        setIsLogin(await login(userData)); 
+        const data = await login(userData)
+        setIsLogin(data.state);
+        return data;
       }
       if(ubi === 'register'){
         const { isCreated } = await userCreate(userData)
@@ -54,6 +56,9 @@ function App() {
         }/>
         <Route path="/home" 
           element={<><Cards /> <ViewOptions /></>}/>
+        <Route path="/newGame" 
+          element={<NewGame />}/>
+        <Route path="/videogamesDetail/:id" element={<CardDetail />}/>
       </Routes>
     </div>
   )

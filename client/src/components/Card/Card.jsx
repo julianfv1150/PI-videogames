@@ -8,6 +8,7 @@ const Card = ({ id, name, released, genres, img, rating, platforms }) => {
 
     return (
         <div className={style.container}> 
+            
             <div className={style.img}>
                 <img src={img} alt="logo"></img>
             </div>

@@ -82,7 +82,6 @@ export const update = (arreglo) => {
 }
 
 export const filter = (valueFilters) => {
-    console.log('Despachando filter:', valueFilters);
     return (dispatch) => {
         return dispatch({
             type: FILTER,
@@ -92,7 +91,6 @@ export const filter = (valueFilters) => {
 }
 
 export const order = (orden) => {
-    console.log('Despachando orders:', orden)
     return (dispatch) => {
         return dispatch({
             type: ORDER,

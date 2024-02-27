@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 import style from '../Register/Register.module.css'
-import { emailValidate, passwordValidate, userValidate } from '../../utils/index'
+import { emailValidate, passwordValidate, userValidate, registerValidate } from '../../utils/index'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { online, create } from '../../../redux/actionsCreators'
-import { chargeGames } from '../../utils/index'
+import { online } from '../../../redux/actionsCreators'
 
 const Register = ({ changeForm, sesion }) => {
     
@@ -25,23 +24,29 @@ const Register = ({ changeForm, sesion }) => {
     const handleChange = (event) => {
         (event.target.name === 'email') && setUserData({...userData, email: event.target.value});
         (event.target.name === 'name') && setUserData({...userData, name: event.target.value});
-        (event.target.name === 'password') && setUserData({...userData, pass: event.target.value});
-        
-        setErrorData({
-            ...errorData,
-            errEmail: emailValidate(userData),
-            errName: userValidate(userData),
-            errPass: passwordValidate(userData)
-        });
+        (event.target.name === 'password') && setUserData({...userData, pass: event.target.value});     
+
+        (event.target.name === 'email') && setErrorData({...errorData, errEmail: emailValidate({...userData, email: event.target.value})});   
+        (event.target.name === 'name') && setErrorData({...errorData, errUser: userValidate({...userData, name: event.target.value})});   
+        (event.target.name === 'password') && setErrorData({...errorData, errPass: passwordValidate({...userData, pass: event.target.value})}) 
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async(event) => {
         event.preventDefault();
-        dispatch(online(userData))
-        chargeGames().then(data => {
-            dispatch(create(data))
-        })
-        sesion(userData, 'register')
+        if(registerValidate(userData)){
+            const valueSesion = await sesion(userData, 'register')
+            console.log(valueSesion);
+            if( valueSesion.state === false){
+                console.log(valueSesion.message)
+            }
+            else{
+                dispatch(online(userData))
+                sesion(userData, 'register')
+            }
+        }
+        else{
+            console.log('Los datos ingresados no cumplen con las condiciones');
+        }
     }
 
     return (
