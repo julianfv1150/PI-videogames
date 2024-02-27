@@ -12,7 +12,10 @@ const getUser = async (req, res) => {
         ? res.status(200).json({state: true,
                                 name: name
                                 })
-        : res.status(200).json({state: false})
+        : res.status(200).json({
+                                state: false,
+                                message: 'Credenciales incorrectas'
+                                })
         return;
     }
     catch (error) {

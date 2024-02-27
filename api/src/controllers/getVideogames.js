@@ -43,7 +43,7 @@ const getVideogames = async (req, res) => {
                         img: games.background_image,
                         rating: games.rating,
                         platforms: games.platforms.map(elem => elem.platform),
-                        genres: games.genres                        
+                        genres: games.genres,                       
                     })
                 })
             })
