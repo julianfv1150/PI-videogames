@@ -24,17 +24,17 @@ const SearchBar = () => {
 
     return(
         <div className={style.container}>
-            <div>
+            
                 <input
                     className={style.input}
-                    type="text"
+                    type="search"
                     name="email"
                     autoComplete='off'
                     placeholder="Ingrese el nombre del juego"
                     onChange={handleChange}
 
                 />
-            </div>
+            
             <div className={style.buttonSearch}>
                 <button 
                     type="button" 

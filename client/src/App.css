@@ -139,3 +139,44 @@ label {
     position: relative;
 }
 
+.modal{
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modalUp{
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 40%;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 25px;
+    opacity: 1;
+    pointer-events: unset;
+    z-index: 1;
+
+}
+
+.modalContainer{
+    margin: 5%;
+    padding: 2%;
+    color: red;
+    font-size: 1.7em;
+    height: 90%;
+    width: 90%;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    justify-self: center;
+    justify-content: center;
+    align-self: center;
+    /*
+    align-content: center;
+    */
+}
+
+.closeModal{
+    bottom: 0px;
+}

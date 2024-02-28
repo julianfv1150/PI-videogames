@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import style from './NewGame.module.css'
 import { URL, createGame, nameGameValidate, descriptionGameValidate, urlGameValidate, ratingGameValidate, 
-genreGameValidate, platformGameValidate, releasedGameValidate, newGameValidate } from '../../utils/index'
+genreGameValidate, platformGameValidate, releasedGameValidate, newGameValidate, showModal } from '../../utils/index'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
@@ -29,9 +29,6 @@ const NewGame = () => {
         errPlatform: ''
     })
     
-    const sacarElemento = (arreglo, valor) => {
-        setGamesData({...gamesData, [arreglo]:gamesData[arreglo].filter(elem => elem !== valor)})
-    }
     
     const handleChange = (event) => {
         
@@ -53,13 +50,17 @@ const NewGame = () => {
         (event.target.name === 'platform') && setGamesError({...gamesError,errPlatform: platformGameValidate({...gamesData, platform: [...gamesData.platform, event.target.value]})});
     }  
     
+    const sacarElemento = (arreglo, valor) => {
+        setGamesData({...gamesData, [arreglo]:gamesData[arreglo].filter(elem => elem !== valor)})
+    }
+
     const handleSubmit = () => {
         event.preventDefault();
         if(newGameValidate(gamesData)){
             createGame(gamesData)
         }
         else {
-            console.log('Soltar Modal');
+            showModal('No se cumplen las condiciones necesarias');
         }
     }
     
@@ -79,7 +80,7 @@ const NewGame = () => {
             });
             setGamesData({...gamesData, generos: genre, plataformas: platforms});
         })
-    }, [])
+    },[])
 
     return (
         <div className='createGame'>

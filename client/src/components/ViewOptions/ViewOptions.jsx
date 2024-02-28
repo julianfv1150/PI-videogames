@@ -1,3 +1,4 @@
+
 import style from './ViewOptions.module.css'
 import axios from 'axios'
 import { URL } from '../../utils/index';
@@ -39,7 +40,8 @@ const ViewOptions = () => {
             });
             setSelects({...selects, generos: genre, plataformas: platforms});
         })
-    }, [])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
 
     const handleChange = () => {
         
@@ -59,7 +61,7 @@ const ViewOptions = () => {
                                         }
         });
     }    
-    
+
     const handleSubmit = () => {
         event.preventDefault();
         if(flagPos !== 'filterGames'){
@@ -125,6 +127,11 @@ const ViewOptions = () => {
                         </fieldset>
                     </div>                    
                     <div>
+                        <input
+                            type='Submit'
+                            value = 'Limpiar'
+                            onChange={handleChange}
+                            onClick={()=>dispatch(flag('videoGames'))}/>
                         <input
                             type='Submit'
                             value = 'Aplicar'

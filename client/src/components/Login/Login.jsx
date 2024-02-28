@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import style from './Login.module.css'
-import { emailValidate, passwordValidate, loginValidate } from '../../utils/index'
+import { emailValidate, passwordValidate, loginValidate, showModal } from '../../utils/index'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { online } from '../../../redux/actionsCreators'
@@ -33,7 +33,7 @@ const Login = ({sesion, changeForm}) => {
         if(loginValidate(userData)){
             const valueSesion = await sesion(userData, 'login')
             if( valueSesion.state === false){
-                console.log(valueSesion.message)
+                showModal(valueSesion.message)
             }
             else{
                 dispatch(online(userData))
@@ -41,7 +41,7 @@ const Login = ({sesion, changeForm}) => {
             }
         }
         else{
-            console.log('Los datos ingresados no cumplen con las condiciones');
+            showModal('Los datos ingresados no cumplen con las condiciones')
         }
     }
 
@@ -105,13 +105,3 @@ const Login = ({sesion, changeForm}) => {
 }
 
 export default Login;
-
-/*
-
-setErrorCred({
-            ...errorCred, 
-            email: emailValidate(userData), 
-            pass: passwordValidate(userData)
-        });
-
-*/

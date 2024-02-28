@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import style from '../Register/Register.module.css'
-import { emailValidate, passwordValidate, userValidate, registerValidate } from '../../utils/index'
+import { emailValidate, passwordValidate, userValidate, registerValidate, showModal } from '../../utils/index'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { online } from '../../../redux/actionsCreators'
@@ -37,7 +37,7 @@ const Register = ({ changeForm, sesion }) => {
             const valueSesion = await sesion(userData, 'register')
             console.log(valueSesion);
             if( valueSesion.state === false){
-                console.log(valueSesion.message)
+                showModal(valueSesion.message)
             }
             else{
                 dispatch(online(userData))
@@ -45,7 +45,7 @@ const Register = ({ changeForm, sesion }) => {
             }
         }
         else{
-            console.log('Los datos ingresados no cumplen con las condiciones');
+            showModal('Los datos ingresados no cumplen con las condiciones');
         }
     }
 

@@ -1,6 +1,12 @@
 .container{
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 70% 30%;
+    justify-items: center;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-content: center;
+    align-self: center;
 }
 
 .buttonSearch{
@@ -10,9 +16,16 @@
     align-items: right;
     align-content: right;
     align-self: right;
+    margin-right: 5%;
 }
 
 .input{
-    height: 75%;
+    height: 65%;
     width: 75%;
+    background-color: rgb(222, 222, 222);
+    border-radius: 20px;
+    width: 100%;
+    margin-left: 10%;
+    font-size: 0.7em;
+    color: rgb(0, 0, 0);
 }

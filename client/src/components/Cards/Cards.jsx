@@ -1,22 +1,18 @@
 import style from './Cards.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import Card from '../Card/Card'
-import { pagemore, pageless, create } from '../../../redux/actionsCreators'
+import { pagemore, pageless, create, flag } from '../../../redux/actionsCreators'
 import { chargeGames } from '../../utils'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { showModal } from '../../utils'
 
 const Cards = () => {
 
-    const dispatch = useDispatch()
-    useEffect(()=>{
-        chargeGames().then(data => {
-            dispatch(create(data))
-        })
-    },[])
-
-    const { flag, page }  = useSelector(state => state)
-    const vgames = useSelector(state =>(flag !== 'filterGames') ? state[flag] : state[flag][1])
+    const dispatch = useDispatch();
+    const flagg = useSelector(state => state.flag)
+    const { page }  = useSelector(state => state)
+    const vgames = useSelector(state =>(flagg !== 'filterGames') ? state[flagg] : state[flagg][1])
 
     const prev = () => {
         if(page >= 2){
@@ -38,10 +34,25 @@ const Cards = () => {
         top = (page * 15) - 1
     }
     
+    useEffect(()=>{
+        chargeGames().then(data => {
+            dispatch(create(data))
+        })
+    }, [])
+
+    useEffect(()=>{
+        if(vgames.length === 0 && flagg === 'filterGames') {
+            showModal('No se encontraron coincidencias, realiza otra búsqueda..')
+            setTimeout(() => {
+                dispatch(flag('videoGames'))
+            }, 1000)
+        }
+    },[vgames])
+    
     return (
         <div className="cards">
             <div className={style.container}>
-                {
+                {                    
                     vgames.map((games, index) =>{
                         if(index >= bottom && index <= top){
                             return <Link to={`/videogamesDetail/${games.id}`} key={games.id}  ><Card                                
@@ -53,9 +64,8 @@ const Cards = () => {
                                 platforms={games.platforms}
                                 rating={games.rating} /></Link>
                         }  
-                    })
+                    })                    
                 }
-                
             </div>
             
             <div className={style.page}>

@@ -2,7 +2,7 @@ import './App.css'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { Header, Login, Register, Navigation, Cards, ViewOptions, NewGame, CardDetail } from './components/index'
 import { useState, useEffect } from 'react'
-import { login, userCreate } from './utils/index'
+import { login, userCreate, closeModal } from './utils/index'
 
 
 function App() {
@@ -41,7 +41,20 @@ function App() {
   }, [isLogin]);
   
   return (
-    <div id="App">      
+    <div id="App">
+      <div id='divModal' className='modal' onClick={closeModal}>
+        <div className='modalContainer'>
+          <div>
+            <h2>OOOPS!!?</h2>
+          </div>
+          <div>
+            <p id='pModal'></p>
+          </div>
+          <div className='closeModal'>
+            <p >Cliquea para cerrar..</p>
+          </div>
+        </div>
+      </div>
       <Header/>
       {location.pathname !== '/' ? <Navigation logOut={logOut}/> : null}
       <Routes>   
@@ -65,4 +78,3 @@ function App() {
 }
 
 export default App
-

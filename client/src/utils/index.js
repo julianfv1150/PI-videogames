@@ -3,6 +3,7 @@ import userCreate from './userCreate.js'
 import searchGames from './searchGame.js'
 import chargeGames from './chargeGames.js'
 import createGame from './createGame.js'
+import { showModal, closeModal } from './actionsModal.js'
 import passwordValidate from './validates/passwordValidate.js'
 import userValidate from './validates/userValidate.js'
 import emailValidate from './validates/emailValidate.js'
@@ -36,5 +37,7 @@ export {
   releasedGameValidate,
   newGameValidate,
   loginValidate,
-  registerValidate
+  registerValidate,
+  showModal,
+  closeModal,
 }
