@@ -53,19 +53,12 @@ const reducer = (state = {
                                         if(action.payload.origen === 'API') return typeof(elem.id) === 'number';
                                 })
                                 .filter(elem => {
-                                        if(action.payload.genero !== '') {
-                                            return elem.genres.some(genre => genre.name === action.payload.genero);
-                                        } else {
-                                                return true;
-                                        }
+                                        if(action.payload.genero !== '') return elem.genres.some(genre => genre.name === action.payload.genero);
+                                        if(action.payload.genero === '') return true;
                                 })
                                 .filter(elem => {
-                                        if(action.payload.plataforma !== '') {
-                                                return elem.platforms.some(platform =>platform.name === action.payload.plataforma)
-                                        }
-                                        else{
-                                                return true
-                                        }                                        
+                                        if(action.payload.plataforma !== '') return elem.platforms.some(platform =>platform.name === action.payload.plataforma)
+                                        if(action.payload.plataforma === '') return true
                                 })
                         ]
                 };
@@ -73,6 +66,7 @@ const reducer = (state = {
                 return {
                         ...state, filterGames: [state.filterGames[0], state.filterGames[1].sort((a, b) => {
                                 
+                                if(action.payload.orden === "") return true
                                 if(isNaN(a[action.payload.orden])){
                                         if(action.payload.mayusMinus === 'asc')
                                                 return a[action.payload.orden].localeCompare(b[action.payload.orden], 'es', { numeric: true })
@@ -95,16 +89,3 @@ const reducer = (state = {
 export {
     reducer
 };
-
-/*
-case ORDER:
-                return {
-                        ...state, filterGames: [state.filterGames[0], state.filterGames[1].sort((a, b) => {
-                                if(action.payload.mayusMinus === 'asc')
-                                return a[action.payload.orden].localeCompare(b[action.payload.orden], 'es', { numeric: true })
-                                if(action.payload.mayusMinus === 'desc')
-                                return b[action.payload.orden].localeCompare(a[action.payload.orden], 'es', { numeric: true })
-                        })]
-                };
-
-*/

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import style from './NewGame.module.css'
 import { URL, createGame, nameGameValidate, descriptionGameValidate, urlGameValidate, ratingGameValidate, 
-genreGameValidate, platformGameValidate, releasedGameValidate, newGameValidate, showModal } from '../../utils/index'
+genreGameValidate, platformGameValidate, releasedGameValidate, newGameValidate, showModal, succesModal } from '../../utils/index'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
@@ -58,6 +58,7 @@ const NewGame = () => {
         event.preventDefault();
         if(newGameValidate(gamesData)){
             createGame(gamesData)
+            succesModal('Juego creado con éxito')
         }
         else {
             showModal('No se cumplen las condiciones necesarias');

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import style from '../Register/Register.module.css'
-import { emailValidate, passwordValidate, userValidate, registerValidate, showModal } from '../../utils/index'
+import { emailValidate, passwordValidate, userValidate, registerValidate, showModal, succesModal } from '../../utils/index'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { online } from '../../../redux/actionsCreators'
@@ -42,6 +42,7 @@ const Register = ({ changeForm, sesion }) => {
             else{
                 dispatch(online(userData))
                 sesion(userData, 'register')
+                succesModal('Usuario creado con éxito')
             }
         }
         else{

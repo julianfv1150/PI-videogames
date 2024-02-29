@@ -16,9 +16,8 @@ export const PAGEMORE = 'PAGEMORE';
 export const PAGELESS = 'PAGELESS';
 
 //FILTERS
-export const CLEAN = 'CLEAN';
-export const FILTER = 'FILTER';
 export const UPDATE = 'UPDATE';
+export const FILTER = 'FILTER';
 
 //ORDERS
 export const ORDER = 'ORDER';

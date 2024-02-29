@@ -11,3 +11,10 @@ export const closeModal = () => {
     textModal.innerText = ''
 }
 
+export const succesModal = (showText) => {
+    const windowsModal = document.getElementById('divModal')
+    const textModal = document.getElementById('pModal')
+    windowsModal.className = 'modalUp'
+    textModal.className ='pModal    '
+    textModal.innerText = showText
+}

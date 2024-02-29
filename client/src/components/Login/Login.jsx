@@ -97,7 +97,7 @@ const Login = ({sesion, changeForm}) => {
                     <p>Credenciales:</p>
                     <hr></hr>
                     <p>Usr: user@videogames.com</p>
-                    <p>Pass: userVideogames</p>
+                    <p>Pass: userVideogames2024</p>
                 </div>
             </form>
         </div>

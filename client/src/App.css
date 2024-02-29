@@ -180,3 +180,10 @@ label {
 .closeModal{
     bottom: 0px;
 }
+
+.pModal{
+    background-color: rgb(80, 80, 80);
+    border-radius: 25px;
+    margin: 3%;
+    color: aqua;
+}

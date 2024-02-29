@@ -45,7 +45,7 @@ function App() {
       <div id='divModal' className='modal' onClick={closeModal}>
         <div className='modalContainer'>
           <div>
-            <h2>OOOPS!!?</h2>
+            <h2>Aviso de sistema</h2>
           </div>
           <div>
             <p id='pModal'></p>

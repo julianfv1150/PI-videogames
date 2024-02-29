@@ -3,7 +3,7 @@ import userCreate from './userCreate.js'
 import searchGames from './searchGame.js'
 import chargeGames from './chargeGames.js'
 import createGame from './createGame.js'
-import { showModal, closeModal } from './actionsModal.js'
+import { showModal, closeModal, succesModal } from './actionsModal.js'
 import passwordValidate from './validates/passwordValidate.js'
 import userValidate from './validates/userValidate.js'
 import emailValidate from './validates/emailValidate.js'
@@ -19,6 +19,8 @@ import loginValidate from './validates/loginValidate.js'
 import registerValidate from './validates/registerValidate.js'
 
 export const URL = 'http://localhost:3001';
+export const noImage = '../src/assets/noImage.svg';        
+
 export {
   login, 
   emailValidate, 
@@ -40,4 +42,5 @@ export {
   registerValidate,
   showModal,
   closeModal,
+  succesModal
 }

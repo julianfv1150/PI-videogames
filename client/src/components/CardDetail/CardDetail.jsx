@@ -2,7 +2,7 @@
 import style from './CardDetail.module.css';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
-import { URL } from '../../utils';
+import { URL, noImage } from '../../utils';
 import { useState, useEffect } from 'react';
 
 const CardDetail = () => {
@@ -12,21 +12,31 @@ const CardDetail = () => {
         id: 'Cargando..',
         name: 'Cargando..',
         released:'Cargando..',
+        img: 'Cargando..',
         description: 'Cargando..',
         rating:'Cargando..',
         genres:['Cargando..'],
         platforms:['Cargando..'],
     })
+    
     useEffect(() => {
         axios.get(`${URL}/videogames/${params}`).then(({ data }) => {
             setGame(data)
         })
-    }, [params])
+    },[params])
+
+    const handleErrorImg = (error) => {
+        if (error.target.name === 'img') {
+            error.target.onError = null;
+            error.target.src = noImage;
+        } 
+    }
+
     return (
         <div className="createGame">
             <div className={style.container}>
                 <div className={style.visual}>
-                    <img className={style.imagen} src={game.img} alt={game.name}></img>
+                    <img name='img' className={style.imagen} src={game.img} onError={handleErrorImg} alt={game.name}></img>
                     <h2 className={style.titulo}>{game.name}</h2>
                 </div>
                 <div className={style.data} key={game.id}>
@@ -69,12 +79,3 @@ const CardDetail = () => {
 }
 
 export default CardDetail;
-
-/*
-
-
-
-                    
-
-
-*/

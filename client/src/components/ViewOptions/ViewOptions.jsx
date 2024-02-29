@@ -72,72 +72,92 @@ const ViewOptions = () => {
         dispatch(order(selects.orders))        
     }
 
+    const cleanFilter = () => {
+        dispatch(flag('videoGames'))
+        setSelects({
+            ...selects,
+            filters: {
+                origen: '',
+                genero: '', 
+                plataforma: ''
+            },
+            orders: {
+                orden: '',
+                mayusMinus: ''
+            } 
+        })
+    }
+
     return(
         <div className="viewOptions">
             <div className={style.container}>
                 <div className={style.signal}>
                     <h3 id='cambiar'>&raquo;</h3>
-                </div>                    
-                <form className={style.actions} onSubmit={handleSubmit}>
-                    <div>
-                        <h3>Filtros:</h3>
-                        <p>Origen</p>
-                        <select id='origen' name='origen' defaultValue='' onChange={handleChange}>
-                            <option value='' >Seleccione...</option>
-                            <option value='DB' >DB</option>
-                            <option value='API' >API</option>
-                        </select>
-                        <p>Género</p>
-                        <select id='genero' name='genero' defaultValue='' onChange={handleChange}>
-                            <option value='' >Seleccione...</option>
-                            {selects.generos.map(elem => (
-                                <option key={elem} value={elem}>{elem}</option>
-                            ))}
-                        </select>
-                        <p>Plataforma</p>
-                        <select id='plataforma' name='plataforma' defaultValue='' onChange={handleChange}>
-                            <option value='' >Seleccione...</option>
-                            {selects.plataformas.map(elem => (
-                                <option key={elem} value={elem}>{elem}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div>
-                        <h3>Orden:</h3>
-                        <select id='orden' name='orden' defaultValue='name' onChange={handleChange}>
-                            <option value='' >Seleccione...</option>
-                            <option value='id' >Id</option>
-                            <option value='name' >Nombre</option>
-                            <option value='rating' >Rating</option>
-                        </select>
-                        <fieldset className={style.fieldset}>
-                            <input 
-                                type="radio" 
-                                name="mayusMinus" 
-                                value="asc"
+                </div>  
+                <div className={style.actions}>                  
+                    <form  onSubmit={handleSubmit}>
+                        <div>
+                            <h3>Filtros:</h3>
+                            <p>Origen</p>
+                            <select id='origen' name='origen' defaultValue='' onChange={handleChange}>
+                                <option value='' >Seleccione...</option>
+                                <option value='DB'>DB</option>
+                                <option value='API' >API</option>
+                            </select>
+                            <p>Género</p>
+                            <select id='genero' name='genero' defaultValue='' onChange={handleChange}>
+                                <option value='' >Seleccione...</option>
+                                {selects.generos.map(elem => (
+                                    <option key={elem} value={elem}>{elem}</option>
+                                ))}
+                            </select>
+                            <p>Plataforma</p>
+                            <select id='plataforma' name='plataforma' defaultValue='' onChange={handleChange}>
+                                <option value='' >Seleccione...</option>
+                                {selects.plataformas.map(elem => (
+                                    <option key={elem} value={elem}>{elem}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div>
+                            <h3>Orden:</h3>
+                            <select id='orden' name='orden' defaultValue='' onChange={handleChange}>
+                                <option value='' >Seleccione...</option>
+                                <option value='id' >Id</option>
+                                <option value='name' >Nombre</option>
+                                <option value='rating' >Rating</option>
+                            </select>
+                            <fieldset className={style.fieldset}>
+                                <input 
+                                    type="radio" 
+                                    name="mayusMinus" 
+                                    value="asc"
+                                    onChange={handleChange}/>
+                                <p>Asc</p>
+                                <input  
+                                    type="radio"  
+                                    name="mayusMinus" 
+                                    value="desc"
+                                    onChange={handleChange}
+                                    />
+                                <p>Desc</p>
+                            </fieldset>
+                        </div>                    
+                        <div>
+                            <input
+                                type='Submit'
+                                value = 'Aplicar'
                                 onChange={handleChange}/>
-                            <p>Asc</p>
-                            <input  
-                                type="radio"  
-                                name="mayusMinus" 
-                                value="desc"
-                                onChange={handleChange}
-                                />
-                            <p>Desc</p>
-                        </fieldset>
-                    </div>                    
+                        </div>
+                    </form>
                     <div>
                         <input
                             type='Submit'
                             value = 'Limpiar'
                             onChange={handleChange}
-                            onClick={()=>dispatch(flag('videoGames'))}/>
-                        <input
-                            type='Submit'
-                            value = 'Aplicar'
-                            onChange={handleChange}/>
+                            onClick={()=>cleanFilter()}/>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     )

@@ -5,12 +5,11 @@ import { ONLINE, OFFLINE, CREATE, FLAG, NAMEGAMES, PAGEMORE, PAGELESS, FILTER, U
 export const online = (userData) => {
     return async (dispatch) =>{
         try {
-            const {email, pass } = userData;
+            const { email, pass } = userData;
             const { data } = await axios.get(`${URL}/users?email=${email}&pass=${pass}`);
-            userData.name = data.name;
             return dispatch({
                 type: ONLINE,
-                payload: userData
+                payload: data.name
             })
         }
         catch (error) {
