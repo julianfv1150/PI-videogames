@@ -26,5 +26,4 @@ router.get('/platform', getPlatform)
 router.post('/videogames', postVideogames)
 router.post('/users', postUsers)
 
-
 module.exports = router;
