@@ -48,7 +48,7 @@ const Cards = () => {
             }, 1000)
         }
     },[vgames])
-    
+
     return (
         <div className="cards">
             <div className={style.container}>

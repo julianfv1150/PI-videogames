@@ -108,14 +108,7 @@ const NewGame = () => {
                         <br></br>
                         <div>
                             <label htmlFor="lblImg">Imagen: </label>
-                            <input
-                                type="text" 
-                                name="img"
-                                placeholder="Ingrese una URL"
-                                autoComplete='off' 
-                                value={gamesData.img}
-                                onChange={handleChange}
-                            />
+                            
                             <hr></hr>
                             <p className={gamesError.errImg !== true ? style.errors : style.invisible}>
                                 {gamesError.errImg}</p>
@@ -156,7 +149,7 @@ const NewGame = () => {
                             <select id='genre' name='genre' defaultValue='' onChange={handleChange}>
                                     <option value='' >Seleccione...</option>
                                     {gamesData.generos.map(elem => (
-                                        <option key={elem.id} value={elem.id}>{elem.name}</option>
+                                        <option key={elem.id} value={elem.name}>{elem.name}</option>
                                     ))}
                                 </select>
                             <hr></hr>
