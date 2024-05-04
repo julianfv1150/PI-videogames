@@ -2,7 +2,7 @@
 import style from './CardDetail.module.css';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
-import { URL, noImage } from '../../utils';
+import * as images from '../../assets/index'
 import { useState, useEffect } from 'react';
 
 const CardDetail = () => {
@@ -28,7 +28,7 @@ const CardDetail = () => {
     const handleErrorImg = (error) => {
         if (error.target.name === 'img') {
             error.target.onError = null;
-            error.target.src = noImage;
+            error.target.src = images.noImage;
         } 
     }
 

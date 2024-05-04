@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import style from './Card.module.css'
-import { noImage } from '../../utils'
+import * as images from '../../assets/index'
 
 const Card = ({ id, name, released, genres, img, rating, platforms }) => {
     
@@ -8,14 +8,14 @@ const Card = ({ id, name, released, genres, img, rating, platforms }) => {
     const allPlatforms = platforms.map(elem => elem.name).join(' ')      
     
     const handleErrorImg = (error) => {
-        error.target.src = noImage
+        error.target.src = images.noImage
     }
 
     return (
         <div className={style.container}> 
             
             <div className={style.img}>
-                <img src={img || noImage} onError={handleErrorImg} alt="logo"
+                <img src={img || images.noImage} onError={handleErrorImg} alt="logo"
                 ></img>
             </div>
             <div className={style.card}>

@@ -2,6 +2,7 @@ import style from './Navigation.module.css';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { SearchBar } from '../index';
+import * as images from '../../assets/index'
 //import { flag } from '../../../redux/actionsCreators';
 
 const Navigation = (logOut) => {
@@ -22,7 +23,7 @@ const Navigation = (logOut) => {
                     <Link className={style.link} onClick={()=>{logOut()}}>
                         <img
                             className={style.user} 
-                            src='./src/assets/user-icon.svg'>
+                            src={images.userIcon}>
                         </img>
                     </Link>
                     <br></br>

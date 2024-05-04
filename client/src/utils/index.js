@@ -18,8 +18,7 @@ import newGameValidate from './validates/newGameValidate.js'
 import loginValidate from './validates/loginValidate.js'
 import registerValidate from './validates/registerValidate.js'
 
-export const URL = import.meta.env.VITE_URL;
-export const noImage = '../src/assets/noImage.svg';        
+export const URL = import.meta.env.VITE_URL;        
 
 export {
   login, 
