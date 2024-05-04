@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import * as images from '../../assets/index'
 import { useState, useEffect } from 'react';
+import { URL } from '../../utils/index'
 
 const CardDetail = () => {
 
